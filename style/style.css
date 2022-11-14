@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+	text-decoration: none;
+  font-size: 20px;
+}
+body {
+  background-image: url(../img/cover.png);
+  background-size: 34%;
+}
+h1, h3, h4, h5 {
+	color:  white;
+	background: #032c0b;
+	text-align: center;
+  text-shadow: 1px 1px 1px #000;
+	display: block;
+  border: 3px solid black;
+}
+h1 {
+	margin: 30px 25% 0;
+	padding: 10px 15px;
+	font-size: 40px;
+  border-bottom: none;
+
+	border-radius: 50px 50px 0 0;
+}
+h3 {
+	margin: 0 25%;
+	padding: 0 5px;
+	font-size: 35px;
+	font-weight: 600;
+  border-top: none;
+  border-bottom: none;
+}
+h4 {
+	margin: 30px 25% 0;
+	padding: 20px 15px;
+	font-size: 55px;
+	text-decoration: underline;
+  border-bottom: none;
+	border-radius: 50px 50px 0 0;
+}
+h5 {
+	margin: 0 25% 30px;
+	padding: 20px 15px;
+	font-size: 50px;
+	text-decoration: underline;
+  border-top: none;
+	border-radius: 0 0 50px 50px;
+}
+p {
+  margin: 5px;
+  margin-left: 10px;
+}
+
+/*форма*/
+.form {
+	position: relative;
+	margin: 0 25%;
+	padding: 5px;
+	background: rgb(226, 255, 220);
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+}
+.formTitle {
+  font-weight: 750;
+}
+input {
+  margin-left: 10px;
+  padding-left: 10px;
+  width: 90%;
+  height: 25px;
+  border-radius: 5px;
+}
+legend {
+  margin-left: 2%;
+  font-weight: 750;
+  font-size: 25px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  padding: 2px 15px;
+	background: rgb(184, 255, 170);
+  color: rgb(0, 0, 0);
+}
+fieldset {
+  border-radius: 10px;
+}
+.first {
+  margin: 15px 10px;
+}
+.white {
+  background-color: white;
+}
+
+/*параметры кнопок*/
+
+.buttons{
+  text-align: center;
+}
+.buttonProcess, .buttonClear {
+  margin: 5px 25px;
+  font-size: 25px;
+  padding: 10px;
+  font-weight: 750;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 10px;
+}
+
+/*кнопка "Процесс"*/
+.buttonProcess {
+  background: rgb(33, 167, 40);
+  color: rgb(255, 243, 187);
+}
+.buttonProcess:hover {
+  background: rgb(45, 216, 53);
+  color: rgb(255, 233, 137);
+}
+.buttonProcess:active {
+  background: rgb(53, 255, 63);
+  color: rgb(255, 225, 94);
+}
+
+/*кнопка "Очистить"*/
+.buttonClear {
+  background: rgb(167, 33, 33);
+  color: rgb(255, 243, 187);
+}
+.buttonClear:hover {
+  background: rgb(216, 45, 45);
+  color: rgb(255, 233, 137);
+}
+.buttonClear:active {
+  background: rgb(255, 53, 53);
+  color: rgb(255, 225, 94);
+}
+
+/*Логотипы*/
+header {
+  position: relative;
+}
+.logo1, .logo2 {
+  display: block;
+  position: absolute;
+}
+.logo1 {
+  width: 10%;
+  bottom: 15%;
+  left: 25.5%;
+}
+.logo2 {
+  width: 7%;
+  bottom: 15%;
+  right: 25.5%;
+}

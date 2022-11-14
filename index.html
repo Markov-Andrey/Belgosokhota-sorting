@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Белгосохота - Сортировщик</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="./icon/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./style/style.css" />
+    <script src="./script/main.js"></script>
+    <!-- Сторонний скрипт для копирования в буфер обмена -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.8.6/clipboard-polyfill.js"></script>
+  </head>
+  <body>
+		<header>
+      <img src="img/logo.png" alt="Logo" class="logo1">
+      <img src="img/mlh-logo.png" alt="Logo" class="logo2">
+			<h4>&nbsp;БЕЛГОСОХОТА&nbsp;</h4>
+			<h3>Автосортировщик</h3>
+			<h3>лесных выделов</h3>
+			<h5></h5>
+		</header>
+			<h1>Сортировщик выделов</h1>
+		<div class="form">
+      <fieldset>
+        <legend>Входящие данные</legend>
+        <br>
+        <p class="formTitle">Квартал:</p>
+        <label for="inputName"></label>
+        <input id="inputName"><br>
+        <br>
+        <p class="formTitle">Выделы <i>(через запятую)</i>:</p>
+        <label for="inputNum"></label>
+        <input id="inputNum"><br>
+        <br>
+        <div class="buttons">
+          <button onclick="processForm()" class="buttonProcess">Обработать</button>
+          <button onclick="clearForm()" class="buttonClear">Очистить</button>
+        </div>
+      </fieldset>
+      <br>
+      <br>
+      <fieldset class="white">
+        <legend>Выходящие данные</legend>
+        <p id = "outputString" class="first">&nbsp;</p>
+      </fieldset>
+      <p><i>*Результат обработки данных автоматически копируется в буфер обмена</i></p>
+		</div>
+    <h5></h5>
+    <p><i><b>©Разработано: Марков А.В.</b></i></p>
+  </body>
+</html>
