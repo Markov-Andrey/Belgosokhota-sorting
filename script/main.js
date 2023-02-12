@@ -1,107 +1,96 @@
-let inputName
-let inputNum
-let output
-let outputNum
-let strArr = []
-let strArrRange = []
-const separator = ','     //метод разделения строки (запятая)
-const join = ', '         //метод сборки строки (запятая с пробелом)
-const wrapStart = '('     //начало обертки (скобка)
-const wrapEnd = ')'       //конец обертки (скобка)
+let processFormBtn = document.querySelector(".buttonProcess")
+let clearFormBtn = document.querySelector(".buttonClear")
+let inputName = document.querySelector('#inputName')
+let inputNum = document.querySelector('#inputNum')
+let output = document.querySelector('#outputString')
 
-//блок обработки данных
-let processForm = () => {
-  //входящие данные
-  inputName = document.querySelector('#inputName').value
-  inputNum = document.querySelector('#inputNum').value
-  
-  //логическая обработка
-  arrStrSplit() //разбивка строки на массив, очистка от пробелов
-  arrSort() //сортировка массива по возрастанию
-  arrStrRange() //компоновка по диапазонам
 
-  //выходящие данные
-  arrStrJoin() //сборка строки в массив
-  outputSrt() //выходящая строка и добавление в буфер обмена
-}
+processFormBtn.addEventListener("click", function() {
 
-//разбивка строки на массив, очистка от пробелов
-let arrStrSplit = () => {
-  strArr = inputNum.split(separator)
-  for(i = 0; i < strArr.length; i++){
-    strArr[i] = strArr[i].trim()
-  }
-}
+  let form = new FormProcessor(inputName.value, inputNum.value)
+  form.processForm()
+})
 
-////сортировка массива по возрастанию
-let arrSort = () => {
-  strArr = strArr.sort(function(a,b){ 
-    return a - b
-  })
-}
-
-//компоновка по диапазонам
-let arrStrRange = () => {
-  //фильтр от ошибочных повторов
-  strArr = strArr.filter((e,i,a)=>a.indexOf(e)==i)
-  //проверка на i + 1, перезапись массива
-  strArrRange = strArr.slice(0)
-  for(i = 0; i < strArr.length; i++){
-    if (
-      (strArr[i] == (strArr[i + 1] - 1)) && 
-      (strArr[i] == (strArr[i + 2] - 2))
-      ){
-        strArrRange[i + 1] = '-';
-      }
-  }
-
-  //очистка от ячеек с тире ("-")
-  for (let i = strArrRange.length - 1; i > 0; i--) {
-    if (strArrRange[i] == strArrRange[i - 1]) {
-      strArrRange.splice(i - 1, 1);
-      i++;
-    }
-  }
-  strArr = strArrRange
-}
-
-//сборка строки в массив
-let arrStrJoin = () => {
-  outputNum = ""
-  for(i = 0; i < strArr.length; i++){
-    if(i < (strArr.length - 1)){
-      if(
-        (strArr[i + 1] == '-') ||
-        (strArr[i] == '-')
-        ){
-        outputNum += strArr[i]
-      } else {
-        outputNum += strArr[i] + join
-      }
-    } else {
-      outputNum += strArr[i]
-    }
-  }
-}
-
-//выходящие данные
-let outputSrt = () => {
-  outStr = `${inputName} ${wrapStart}${outputNum}${wrapEnd}`
-  output = document.querySelector('#outputString')
-  output.innerHTML = outStr
-
-  /*Копирование строки в буфер обмена через стороннюю библиотеку*/
-  let select
-  select = output
-  clipboard.writeText(outStr)
-}
-
-//кнопка очистки формы
-let clearForm = () => {
-  inputName = document.querySelector('#inputName')
-  inputNum = document.querySelector('#inputNum')
-  output = document.querySelector('#outputString')
+clearFormBtn.addEventListener("click", function() {
   inputName.value = ''
   inputNum.value = ''
   output.innerHTML = '&nbsp;'
+})
+
+class FormProcessor {
+  constructor(inputName, inputNum) {
+    this.inputName = inputName;
+    this.inputNum = inputNum;
+    this.strArr = [];
+    this.strArrRange = [];
+    this.outputNum = '';
+    this.separator = ','; //метод разделения строки (запятая)
+    this.join = ', ';     //метод сборки строки (запятая с пробелом)
+    this.wrapStart = '('; //начало обертки (скобка)
+    this.wrapEnd = ')';   //конец обертки (скобка)
+    this.output = document.querySelector('#outputString');
+  }
+
+  //блок обработки данных
+  processForm() {
+    this.arrStrSplit(); //разбивка строки на массив, очистка от пробелов
+    this.arrSort();     //сортировка массива по возрастанию
+    this.arrStrRange(); //компоновка по диапазонам
+    this.arrStrJoin();  //сборка строки в массив
+    this.outputSrt();   //выходящая строка и добавление в буфер обмена
+  }
+
+  arrStrSplit() {
+    this.strArr = this.inputNum.split(this.separator);
+    for (let i = 0; i < this.strArr.length; i++) {
+      this.strArr[i] = this.strArr[i].trim();
+    }
+  }
+
+  arrSort() {
+    this.strArr = this.strArr.sort((a, b) => a - b);
+  }
+
+  arrStrRange() {
+    this.strArr = this.strArr.filter((e, i, a) => a.indexOf(e) === i);
+    this.strArrRange = this.strArr.slice(0);
+    for (let i = 0; i < this.strArr.length; i++) {
+      if (
+        this.strArr[i] == this.strArr[i + 1] - 1 &&
+        this.strArr[i] == this.strArr[i + 2] - 2
+      ) {
+        this.strArrRange[i + 1] = '-';
+      }
+    }
+
+    for (let i = this.strArrRange.length - 1; i > 0; i--) {
+      if (this.strArrRange[i] === this.strArrRange[i - 1]) {
+        this.strArrRange.splice(i - 1, 1);
+        i++;
+      }
+    }
+  }
+
+  arrStrJoin() {
+    this.outputNum = '';
+    for (let i = 0; i < this.strArrRange.length; i++) {
+      if (i < this.strArrRange.length - 1) {
+        if (
+          this.strArrRange[i + 1] == '-' ||
+          this.strArrRange[i] == '-'
+        ) {
+          this.outputNum += this.strArrRange[i];
+        } else {
+          this.outputNum += this.strArrRange[i] + this.join;
+        }
+      } else {
+        this.outputNum += this.strArrRange[i];
+      }
+    }
+  }
+
+  outputSrt() {
+    this.outStr = `${this.inputName} ${this.wrapStart}${this.outputNum}${this.wrapEnd}`;
+    this.output.innerHTML = this.outStr
+  }
 }
